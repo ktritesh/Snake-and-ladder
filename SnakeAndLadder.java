@@ -1,18 +1,36 @@
 package com.bridgelabz.snakeandladder;
 
+import java.util.Random;
+
 public class SnakeAndLadder {
-
+	static int NOPLAY = 0;
+	static int LADDER = 1;
+	static int SNAKE = 2;
+	static int currentPosition = 0;
+	
 	public static void main(String[] args) {
-		
-		//Variable
-		int singlePlayer = 0;
-		System.out.println("Single player at start position is : " +singlePlayer);
-		
-		//computation
-        int roll = (int) (Math.random()*6) + 1;
-        
-        System.out.println("single player rolls the die which is : " + roll );
+		System.out.println("Welcome to Snake and Ladder Program");
 
+	int move = checkIfMovingAheadOrBack();
+	
+	if(move > NOPLAY) {
+		if(move==LADDER) {
+			currentPosition+=rollDice();
+		}
+		else currentPosition-=rollDice();
+	}
 	}
 
+	private static int checkIfMovingAheadOrBack() {
+		Random randomGenerator = new Random();
+		int randomValue = randomGenerator.nextInt(3);
+		return randomValue;
+	}
+
+	static int rollDice() {
+		Random randomGenerator = new Random();
+		int diceValue = randomGenerator.nextInt(6) + 1;
+		System.out.println(diceValue);
+		return diceValue;
+	}
 }
