@@ -11,14 +11,30 @@ public class SnakeAndLadder {
 	public static void main(String[] args) {
 		System.out.println("Welcome to Snake and Ladder Program");
 
-	int move = checkIfMovingAheadOrBack();
-	
-	if(move > NOPLAY) {
-		if(move==LADDER) {
-			currentPosition+=rollDice();
+		while (true) {
+			int move = checkIfMovingAheadOrBack();
+			if (move > NOPLAY) {
+				if (move == LADDER) {
+					currentPosition += rollDice();
+				} else
+					currentPosition -= rollDice();
+			}
+			if (checkIfWon()) {
+				break;
+			}
 		}
-		else currentPosition-=rollDice();
 	}
+
+	private static boolean checkIfWon() {
+		System.out.println(currentPosition);
+		if (currentPosition == 100)
+			return true;
+		else {
+			if (currentPosition < 0) {
+				currentPosition = 0;
+			}
+			return false;
+		}
 	}
 
 	private static int checkIfMovingAheadOrBack() {
@@ -32,5 +48,6 @@ public class SnakeAndLadder {
 		int diceValue = randomGenerator.nextInt(6) + 1;
 		System.out.println(diceValue);
 		return diceValue;
+
 	}
 }
